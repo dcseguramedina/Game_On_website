@@ -155,3 +155,38 @@ function validateQuantityInput(quantity) {
     return false
   }
 }
+
+// Create field object (city)
+// Recover the DOM elements for the city inputs
+let locationInput = document.querySelectorAll('input[name="location"]')
+
+// Check the location input and display an alert if needed
+function validateLocation() {  
+  // Convert the "locationInput" node into an array
+  const locationList = Array.from(locationInput)
+  // Use some() method to test whether at least one element in the array is ckecked
+  const location = locationList.some((input) => input.checked === true)
+  // if the is no checked input, display an alert
+  if (!location) {
+    alert(`Vous devez choisir une ville`)
+    return false
+  }
+  return true
+}
+
+// Create field object (conditions)
+// Recover the DOM element for the conditions
+let checkbox1Input = document.getElementById("checkbox1")
+
+// Add eventListener to conditions field
+checkbox1Input.addEventListener("change", validateCheckBox)
+
+// Check the input and display an alert if needed
+function validateCheckBox(){
+  let checked1 = checkbox1Input.checked
+  if (!checked1 ) {
+    alert(`Vous devez vérifier que vous acceptez les termes et conditions`)
+    return false
+  }
+  return true
+}

@@ -89,3 +89,44 @@ let email = new Field(
   `Veuillez entrer une adresse mail valide`
 );
 email.addEvent();
+
+// Create field object (birthdate)
+const birthDateInput = document.getElementById("birthDate")
+
+// Add eventListener to birthdate field
+birthDateInput.addEventListener("focusout", () => validateBirthDate(birthDateInput.value));
+
+// Validate birthdate field and display an error message if needed
+function validateBirthDate(birthDate) {
+  // Check if the field is not empty
+  if (!birthDate){
+    alert(`Veuillez entrer une date`)
+    return false;
+  }
+  // Check if the input is in the correct format
+  const birthDateFormat = new RegExp(/(18|19|20)\d{2}-(0[1-9]|1[0,1,2])-(0[1-9]|[12][0-9]|3[01])/)
+  const validFormat = birthDateFormat.test(birthDate)
+  
+  if (!validFormat) {
+    alert(`Veuillez entrer une date valide`)
+    return false;
+  }
+
+  // Parse the date to compare with the current date
+  const splitDate = birthDate.split("-");
+  const year = parseInt(splitDate[0]);
+  const month = parseInt(splitDate[1]) - 1;
+  const day = parseInt(splitDate[2]);
+  const dateInput = new Date(year, month, day);
+  
+  // Compare with the current date and check the minimun age for the inscription (15yo)
+  const dateCurrent = new Date();
+  const dateControl = new Date(dateCurrent.getFullYear() - 15, dateCurrent.getMonth(), dateCurrent.getDate());
+  
+  if (dateInput > dateControl) {
+    alert(`Un âge minimum de 15 ans est requis pour s'inscrire`)
+    return false;
+  }
+  
+  return true;
+}

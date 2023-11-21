@@ -190,3 +190,27 @@ function validateCheckBox(){
   }
   return true
 }
+
+// Implement submit btn  
+// Recover the DOM element for the "submitBtn"
+const submitBtn = document.getElementById("submitBtn");
+
+// // Listen to the click and check the inputs
+submitBtn.addEventListener("submit", (event) => {
+  event.preventDefault();
+    // if the form is invalid, display an alert
+    if (firstName.regex.test(firstName.docName.value) !== true ||
+      lastName.regex.test(lastName.docName.value) !== true ||
+      email.regex.test(email.docName.value) !== true ||
+      validateBirthDate(birthDateInput.value) !== true ||
+      validateQuantityInput(parseInt(quantityInput.value,10)) !== true ||
+      validateLocation() !== true ||
+      validateCheckBox() !== true
+    ) {
+      alert(`Le formulaire est incorrect. Veuillez bien remplir tout les champs !`);
+    } else {
+      // reset the form and send confirmaion message
+      document.forms[0].reset()
+      launchConfirmation()
+    }
+})

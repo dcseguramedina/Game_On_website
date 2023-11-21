@@ -130,3 +130,28 @@ function validateBirthDate(birthDate) {
   
   return true;
 }
+
+// Create field object (quantity)
+// Recover the DOM element for the quantity inputs
+const quantityInput = document.getElementById("quantity");
+
+// Add eventListener to quantity field
+quantityInput.addEventListener("focusout", () => validateQuantityInput(parseInt(quantityInput.value,10)));
+
+// Check the quantity input and display an alert if needed
+function validateQuantityInput(quantity) {
+  // if the selected quantity is between 1 and 99, validate
+  if (quantity > 0 && quantity <= 99) {
+    return true
+  }
+  // if the selected quantity exceeds 99, display an alert
+  else if (quantity > 99) {
+    alert(`La quantité maximale est de 99`);
+    return false
+  }
+  // if the quantity has not been selected, display an alert
+  else {
+    alert(`Veuillez sélectionner une quantité afin de continuer`);
+    return false
+  }
+}

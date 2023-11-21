@@ -214,3 +214,52 @@ submitBtn.addEventListener("submit", (event) => {
       launchConfirmation()
     }
 })
+
+// Implement confirmation message 
+// Create "confirmation" element
+const confirmation = document.createElement("div");
+confirmation.className = "confirmation"
+confirmation.style.display = "none"
+// Attach "confirmation" to the content element
+modalBg.appendChild(confirmation);
+
+// Create "closeConfirmation" element
+const closeConfirmationBtn = document.createElement("span");
+closeConfirmationBtn.className = "close"
+// Attach "closemodalBtn" to the content element
+confirmation.appendChild(closeConfirmationBtn);
+
+// Create "confirmationBody" element
+const confirmationBody = document.createElement("div");
+confirmationBody.className = "confirmation-body"
+confirmation.appendChild(confirmationBody);
+
+// Create "confirmationMessage" element
+const confirmationMessage = document.createElement("p");
+confirmationMessage.className = "confirmation-message"
+confirmationMessage.textContent = `Merci ! Votre réservation a été reçue`;
+confirmationBody.appendChild(confirmationMessage);
+
+// Create "closeBtn" element
+const closeBtn = document.createElement("button");
+closeBtn.className = "btn-close"
+closeBtn.textContent = `Fermer`;
+confirmationBody.appendChild(closeBtn);
+
+// Launch confirmation
+function launchConfirmation() {
+  modalContent.style.display = "none";
+  confirmation.style.display = "block";
+}
+
+// Launch close confirmation event
+closeBtn.addEventListener("click", closeConfirmation);
+
+// Launch close modal event
+closeConfirmationBtn.addEventListener("click", closeConfirmation);
+
+// close confirmation
+function closeConfirmation() {
+  confirmation.style.display = "none";
+  modalBg.style.display = "none";
+}
